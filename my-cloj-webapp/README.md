@@ -4,10 +4,8 @@ A Simple URL Shortener in Clojure.
 
 ## Prerequisites
 
-You will need [Leiningen][] 2.0.0 or above installed.
-
-[leiningen]: https://github.com/technomancy/leiningen
-[Redis]: It uses redis to store the shortened urls.
+You will need [Leiningen](https://github.com/technomancy/leiningen) 2.0.0 or above installed.
+You will need to have a [redis](http://redis.io/) server running.
 
 ## Running
 
