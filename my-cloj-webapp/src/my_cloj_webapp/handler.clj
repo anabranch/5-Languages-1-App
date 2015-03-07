@@ -1,16 +1,33 @@
 (ns my-cloj-webapp.handler
   (:require [my-cloj-webapp.views :as views]
-            [compojure.core :refer :all]
+            [compojure.core :as cc]
+            [compojure.handler :as handler]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
+  (:gen-class))
 
 
 
-(defroutes app-routes
-  (GET "/" [] (views/test-hello))
-  (GET "/:link" [link] (views/shortened))
-;  (GET "/shorten/:link" [link] (views/shorten link))
+(cc/defroutes app-routes
+  (cc/POST "/"
+    {params :params}
+    (views/shorten params))
+  (cc/GET "/"
+    []
+    (views/home))
+  (cc/GET "/:link"
+    [link]
+    (views/shortened-link link))
   (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (handler/site app-routes))
+
+(defn -main
+  [& [port]]
+  (let [port (Integer. (or port
+                         (System/getenv "PORT")
+                         5000))]
+    (jetty/run-jetty #'app {:port  port
+                            :join? false})))

@@ -1,7 +1,11 @@
 ;(ns my-cloj-webapp.views-test
-;  (:use clojure.test
-;        ring.mock.request))
+;  (:require [my-cloj-webapp.controllers :as cntrlr]
+;            [clojure.test :refer :all]
+;            [ring.mock.request :as mock]
+;            [my-cloj-webapp.handler :refer :all]))
 ;
 ;
 ;(deftest test-app
-;  (testing "users endpoint"))
+;  (testing "users endpoint"
+;    (is (= ()))
+;    ))

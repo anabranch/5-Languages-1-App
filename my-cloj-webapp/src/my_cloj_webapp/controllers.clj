@@ -1,28 +1,27 @@
-(ns my-cloj-webapp.controllers)
+(ns my-cloj-webapp.controllers
+  (:require [taoensso.carmine :as car :refer (wcar)]))
 
-(def hash-links (atom {}))
-
+(def server1-conn {:pool {} :spec {:host "127.0.0.1" :port 6379}})
+(defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 (defn hash-link [link] (str (hash link)))
+
+(defn validate-url [url]
+  (let
+    [found (re-find #"^(https?|ftp|file)://[\w]*\.\w{1,3}[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]*?" url)]
+    (if (nil? found)
+      false
+      true)
+    )
+  )
 
 (defn get-link
   [shortened-link]
-  (@hash-links (name shortened-link)))
-
-(defn check-db-link
-  [shortened-link]
-  ((complement nil?) (get-link shortened-link)))
-
+  (wcar* (car/get (str shortened-link))))
 
 (defn set-link
   [link]
-  (let [hashed-link (hash-link link)]
-    (swap! hash-links assoc hashed-link link)
-    hashed-link)
-  )
-
-(defn get-and-set-link
-  [potential-link]
-  (if  (check-db-link potential-link)
-    (get-link potential-link)
-    (set-link potential-link))
-  )
+  (if (validate-url link)
+    (let [hashed-link (hash-link link)]
+      (wcar* (car/set hashed-link link))
+      hashed-link)
+    false))

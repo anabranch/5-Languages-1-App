@@ -6,22 +6,29 @@
 
 (deftest test-get-set
   (testing "Test Create, Get, and Check"
-    (cntrlr/set-link "red")
-    (cntrlr/set-link "blue")
-    (let [hash-red (cntrlr/hash-link "red")]
-      (is (= "red" (cntrlr/get-link hash-red)))
+    (def goog "http://www.google.com")
+    (def chicken "http://chicken.org")
+    (cntrlr/set-link goog)
+    (cntrlr/set-link chicken)
+    (let [hash-red (cntrlr/hash-link goog)]
+      (is (= goog (cntrlr/get-link hash-red)))
       )
 
-    (let [hash-blue (cntrlr/hash-link "blue")]
-      (is (= "blue" (cntrlr/get-link hash-blue)))
-      (is (= hash-blue (cntrlr/set-link "blue")))
-      )
-    (is (= false (cntrlr/check-db-link "shoe")))
-    )
-
-  (testing "Test Get and Set Link"
-    (let [hash-red (cntrlr/get-and-set-link "red")]
-      (is (= (cntrlr/get-link hash-red) "red"))
+    (let [hash-blue (cntrlr/hash-link chicken)]
+      (is (= chicken (cntrlr/get-link hash-blue)))
+      (is (= hash-blue (cntrlr/set-link chicken)))
       )
     )
   )
+
+(deftest test-url-Validator
+  (testing "Url Validation"
+    (is (= true (cntrlr/validate-url "http://www.google.com")))
+    (is (= true (cntrlr/validate-url "https://www.google.com")))
+    (is (= true (cntrlr/validate-url "https://google.com")))
+    (is (= false (cntrlr/validate-url "google.org")))
+    (is (= false (cntrlr/validate-url "http://chicken")))
+    (is (= false (cntrlr/validate-url "chicken")))
+    (is (= false (cntrlr/validate-url "http://.")))
+    (is (= false (cntrlr/validate-url "http://")))
+    ))
