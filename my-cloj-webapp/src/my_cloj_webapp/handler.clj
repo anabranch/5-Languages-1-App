@@ -19,6 +19,7 @@
   (cc/GET "/:link"
     [link]
     (views/shortened-link link))
+  (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
