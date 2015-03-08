@@ -5,7 +5,7 @@
             [compojure.route :as route]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
-  (:gen-class))
+  (:gen-class :main true))
 
 
 
@@ -22,8 +22,7 @@
   (route/resources "/")
   (route/not-found "Not Found"))
 
-(def app
-  (handler/site app-routes))
+(def app (handler/site app-routes))
 
 (defn -main
   [& [port]]

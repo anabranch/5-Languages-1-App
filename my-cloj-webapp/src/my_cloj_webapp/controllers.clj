@@ -8,11 +8,7 @@
 (defn validate-url [url]
   (let
     [found (re-find #"^(https?|ftp|file)://[\w]*\.\w{1,3}[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]*?" url)]
-    (if (nil? found)
-      false
-      true)
-    )
-  )
+    (if (nil? found) false true)))
 
 (defn get-link
   [shortened-link]
