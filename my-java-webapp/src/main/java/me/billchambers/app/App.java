@@ -1,11 +1,9 @@
 package me.billchambers.app;
 
-/**
- * Hello world!
- */
+import static spark.Spark.*;
+
 public class App {
     public static void main(String[] args) {
-
-        System.out.println("Hello World!");
+        get("/hello", (req, res) -> "Hello World");
     }
 }
