@@ -18,7 +18,9 @@
     (views/home))
   (cc/GET "/:link"
     [link]
-    (views/shortened-link link))
+    (if-let [new-link (views/shortened-link link)]
+      new-link
+      (route/not-found "This Link Does Not Exist.")))
   (route/resources "/")
   (route/not-found "Not Found"))
 

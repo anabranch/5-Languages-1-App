@@ -54,7 +54,10 @@
         (gen-shorten-form)))))
 
 
-(defn shortened-link [link] (ring-resp/redirect (controllers/get-link link)))
+(defn shortened-link [link]
+  (if-let [new-link (controllers/get-link link)]
+    (ring-resp/redirect new-link)
+    nil))
 
 ;TODO: Likely opportunity for a refactor
 
