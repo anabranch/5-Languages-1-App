@@ -2,6 +2,10 @@
 
 A Simple URL Shortener in Clojure.
 
+Docker Linking is done with:
+
+`https://docs.docker.com/userguide/dockerlinks/`
+
 ## Prerequisites
 
 You will need [Leiningen](https://github.com/technomancy/leiningen) 2.0.0 or above installed.
@@ -17,6 +21,12 @@ To start a web server for the application, run:
 
 ```clojure
 lein test
+```
+
+## Deployment with Docker
+
+```sh
+docker build 
 ```
 
 ## License
