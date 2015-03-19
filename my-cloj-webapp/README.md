@@ -23,10 +23,18 @@ To start a web server for the application, run:
 lein test
 ```
 
-## Deployment with Docker
+## Build & Deploy with Docker
 
 ```sh
-docker build 
+make image
+```
+
+```sh
+# Run Redis
+docker run --name new-red -d redis
+
+#Run
+docker run --name clj --link new-red:new-red -p 5000:5000 -d my-cloj
 ```
 
 ## License
