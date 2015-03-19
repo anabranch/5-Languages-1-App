@@ -1,7 +1,7 @@
 (ns my-cloj-webapp.controllers
   (:require [taoensso.carmine :as car :refer (wcar)]))
 
-(def server1-conn {:pool {} :spec {:host "127.0.0.1" :port 6379}})
+(def server1-conn {:pool {} :spec {:host "new-red" :port 6379}})
 (defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 (defn hash-link [link] (str (hash link)))
 
