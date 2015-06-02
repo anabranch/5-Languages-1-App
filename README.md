@@ -29,7 +29,10 @@ There aren't a lot of resources on the web that teach you how to write clojure. 
 
 There were a couple of things that blew me away about Clojure. Firstly it felt extremely natural, all functions are nice and short and the naming conventions provided by polish-notation are a joy. The regex wasn't too bad (although I had to jump into some javadocs to understand limitations/capabilities) either. I'm also really intrigued by immutable data structures - this seems like a really good thing to me as it really forces you to make better design decisions.
 
-
+```sh
+docker run --name new-red redis
+docker run --name clj --link new-red:new-red -p 5000:5000 -d my-cloj
+```
 ####Libraries
 [Carmine](https://github.com/ptaoussanis/carmine)
 - Redis Helper
