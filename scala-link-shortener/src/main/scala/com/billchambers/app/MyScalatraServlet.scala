@@ -15,11 +15,14 @@ class Router extends MyScalaLinkShortenerStack {
   }
 
   get("/:link") {
-    <html>
-    <body>
-    <h1>{params("link")}</h1>
-      </body>
-    </html>
+    val link = params("link")
+    val templatePath = link
+    println(templatePath)
+
+    findTemplate(templatePath) map { path =>
+      contentType = "text/html"
+      layoutTemplate(path)
+    } orElse serveStaticResource() getOrElse resourceNotFound()
   }
 
   post("/"){
