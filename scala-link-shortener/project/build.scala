@@ -30,7 +30,8 @@ object ScalaLinkShortenerBuild extends Build {
         "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty" % "jetty-plus" % "9.1.5.v20140505" % "container",
         "javax.servlet" % "javax.servlet-api" % "3.1.0",
-        "net.debasishg" %% "redisclient" % "3.0"
+        "net.debasishg" %% "redisclient" % "3.0",
+        "org.specs2" %% "specs2-core" % "3.6" % "test"
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(

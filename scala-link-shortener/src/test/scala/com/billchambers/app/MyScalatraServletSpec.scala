@@ -2,15 +2,31 @@ package com.billchambers.app
 
 import org.scalatra.test.specs2._
 
-// For more on Specs2, see http://etorreborre.github.com/specs2/guide/org.specs2.guide.QuickStart.html
-class MyScalatraServletSpec extends ScalatraSpec { def is =
-  "GET / on MyScalatraServlet"                     ^
-    "should return status 200"                  ! root200^
-                                                end
+class MyScalatraServletSpec extends MutableScalatraSpec {
+  addServlet(classOf[Routers], "/*")
 
-  addServlet(classOf[MyScalatraServlet], "/*")
-
-  def root200 = get("/") {
-    status must_== 200
+  "Get / " should {
+    "return 200" in {
+      get("/") {
+        status must_== 200
+      }
+    }
   }
+
+  "Post to /" should {
+    "create new value and return 200" in {
+      post("/", Map("link" -> "http://www.google.com")) {
+        status must_== 200
+      }
+    }
+  }
+
+  "Get /-1524223440" should {
+    "get redirected to google's page and return 200, may fail if not after POST" in {
+      get("/-1524223440") {
+        status must_== 302
+      }
+    }
+  }
+
 }
