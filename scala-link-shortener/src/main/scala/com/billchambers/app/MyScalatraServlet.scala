@@ -7,13 +7,11 @@ class Routers extends MyScalaLinkShortenerStack {
 
   get("/") {
     contentType = "text/html"
-    layoutTemplate("index", "title" -> "Hello This Title", "headline" -> "There", "body" -> "FINALLY")
+    layoutTemplate("index", "genForm" -> true)
   }
 
   get("/:link") {
     val templatePath = params("link")
-    println(templatePath)
-
     findTemplate(templatePath) map { path =>
       contentType = "text/html"
       layoutTemplate(path)

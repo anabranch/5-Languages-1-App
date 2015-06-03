@@ -1,8 +1,7 @@
--@ import val title: String
--@ import val headline: String
--@ import val body: String
+-@ import val genForm: Boolean
 
--attributes("title") = title
--attributes("headline") = headline
+- attributes("title") ="Welcome to the Scala Url Shortener" 
 
-p= body
+p= "Something Goes here"
+
+- render("form.jade")
