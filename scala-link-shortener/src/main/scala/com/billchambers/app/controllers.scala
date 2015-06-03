@@ -1,6 +1,6 @@
 package com.billchambers.app
 
-//Class based version
+//Class based version, not using this one
 class Url (inputUrl:String) {
   val validUrl ="^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]".r;
   val url = inputUrl match {

@@ -6,12 +6,8 @@ import scalate.ScalateSupport
 class Routers extends MyScalaLinkShortenerStack {
 
   get("/") {
-    <html>
-    <body>
-    <h1>Hello, world!</h1>
-    Say <a href="hello-scalate">hello to Scalate</a>.
-      </body>
-    </html>
+    contentType = "text/html"
+    layoutTemplate("index", "title" -> "Hello This Title", "headline" -> "There", "body" -> "FINALLY")
   }
 
   get("/:link") {
