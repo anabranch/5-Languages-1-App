@@ -1,13 +1,35 @@
--@ import val displayForm: Boolean = false
--@ import val link: String = ""
--@ import val oldLink: String = ""
+-@ val displayForm: Boolean = false
+-@ val link: String = ""
+-@ val oldLink: String = ""
 
 - attributes("title") = "Scalatra: a tiny, Sinatra-like web framework for Scala"
-- attributes("headline") = "Welcome to Scalatra, This is the Base Template"
-
-p= "Hello, Scalate!"
 
 - if (displayForm == true)
-  - render("form.jade")
+  .row
+    .col-md-4.col-md-offset-4
+      p= "Sorry that's not a valid link please try again"
+      p= "The link we received was:"
+      pre{:style => "white-space:normal;"}
+        a{:href => oldLink} #{oldLink}
+
+  .row
+    .col-md-4.col-md-offset-4
+      - render("form.jade")
 - else
-  p= link
+  .row
+    .col-md-6.col-md-offset-3
+      h3= "Here is your shortened Link"
+      pre{:style => "white-space:normal;"}
+        a{:href => link} #{link}
+  .row
+    .col-md-6.col-md-offset-3
+      h3= "This is the link we shortened!"
+      pre{:style => "white-space:normal;"}
+        a{:href => oldLink} #{oldLink}
+  .row
+    .col-md-6.col-md-offset-3
+      h3= "Shorten Another"
+  .row
+    .col-md-4.col-md-offset-4
+      - render("form.jade")
+

@@ -2,7 +2,6 @@ package com.billchambers.app
 import scala.util.hashing.MurmurHash3
 import com.redis._
 
-
 object RedisWrapper {
   val redis = new RedisClient("localhost", 6379)
 }
@@ -19,8 +18,8 @@ object validateUrl {
 }
 
 object LinkController{
-  def getLink(shortenedLink:String){
-    RedisWrapper.redis.get(shortenedLink)
+  def getLink(shortenedLink:String): String = {
+      RedisWrapper.redis.get(shortenedLink).orNull
   }
   def setLink(inputLink:String): Any = {
     val hashedLink = MurmurHash3.stringHash(inputLink).toString
