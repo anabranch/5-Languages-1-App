@@ -7,7 +7,7 @@ class Routers extends MyScalaLinkShortenerStack {
 
   get("/") {
     contentType = "text/html"
-    layoutTemplate("index", "genForm" -> true)
+    layoutTemplate("index")
   }
 
   get("/:link") {
@@ -19,6 +19,13 @@ class Routers extends MyScalaLinkShortenerStack {
   }
 
   post("/"){
-
+    val link = params("link")
+    val outputTemplate = layoutTemplate("link", _:(String,Any), _:(String,String))
+    contentType = "text/html"
+    LinkController.setLink(link) match {
+      case hashed: String => outputTemplate("link" -> hashed, "oldLink" -> link)
+      // case bool: Boolean => outputTemplate("displayForm" -> true // unnecessary
+      case _ => outputTemplate("displayForm" -> true, "oldLink" -> link)
+    }
   }
 }

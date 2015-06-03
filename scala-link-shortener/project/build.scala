@@ -29,7 +29,8 @@ object ScalaLinkShortenerBuild extends Build {
         "ch.qos.logback" % "logback-classic" % "1.1.2" % "runtime",
         "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty" % "jetty-plus" % "9.1.5.v20140505" % "container",
-        "javax.servlet" % "javax.servlet-api" % "3.1.0"
+        "javax.servlet" % "javax.servlet-api" % "3.1.0",
+        "net.debasishg" %% "redisclient" % "3.0"
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(

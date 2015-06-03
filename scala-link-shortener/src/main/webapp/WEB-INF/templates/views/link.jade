@@ -1,0 +1,13 @@
+-@ import val displayForm: Boolean = false
+-@ import val link: String = ""
+-@ import val oldLink: String = ""
+
+- attributes("title") = "Scalatra: a tiny, Sinatra-like web framework for Scala"
+- attributes("headline") = "Welcome to Scalatra, This is the Base Template"
+
+p= "Hello, Scalate!"
+
+- if (displayForm == true)
+  - render("form.jade")
+- else
+  p= link
