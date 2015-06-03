@@ -3,7 +3,7 @@ package com.billchambers.app
 import org.scalatra._
 import scalate.ScalateSupport
 
-class Router extends MyScalaLinkShortenerStack {
+class Routers extends MyScalaLinkShortenerStack {
 
   get("/") {
     <html>
@@ -15,8 +15,7 @@ class Router extends MyScalaLinkShortenerStack {
   }
 
   get("/:link") {
-    val link = params("link")
-    val templatePath = link
+    val templatePath = params("link")
     println(templatePath)
 
     findTemplate(templatePath) map { path =>
