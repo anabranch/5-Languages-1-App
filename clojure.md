@@ -12,6 +12,7 @@ There were a couple of things that blew me away about Clojure. Firstly it felt e
 docker run --name new-red redis
 docker run --name clj --link new-red:new-red -p 5000:5000 -d my-cloj
 ```
+
 ####Libraries
 [Carmine](https://github.com/ptaoussanis/carmine)
 - Redis Helper
